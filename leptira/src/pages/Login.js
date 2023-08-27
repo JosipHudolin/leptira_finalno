@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { InputGroup, Form, Container, Alert } from "react-bootstrap";
+import React, { useState, useContext } from "react";
+import { InputGroup, Form, Container } from "react-bootstrap";
+import { GlobalErrorContext } from "../contexts/GlobarErrorContext";
 import { Button, Logo } from "../@leptira";
 import { useNavigate } from "react-router-dom";
 import { Link } from "../@leptira";
@@ -10,11 +11,11 @@ import NewPassword from "../components/NewPassword";
 const Login = () => {
   const navigate = useNavigate();
 
+  const { setGlobalError } = useContext(GlobalErrorContext);
+
   const [modalOpen, setModalOpen] = useState(false);
 
   const [email, setEmail] = useState("");
-
-  const [error, setError] = useState("");
 
   const [password, setPassword] = useState("");
 
@@ -25,28 +26,16 @@ const Login = () => {
       await signInWithEmailAndPassword(auth, email, password);
       navigate("/");
     } catch (error) {
-      setError(error.message);
+      setGlobalError(error.message);
     }
   };
-
-  useEffect(() => {
-    if (!error) return;
-    setTimeout(() => {
-      setError("");
-    }, 10 * 1000);
-  }, [error]);
 
   return (
     <Container>
       <NewPassword modalOpen={modalOpen} setModalOpen={setModalOpen} />
       <Logo />
       <Form onSubmit={handleSubmit}>
-        {error ? (
-          <Alert variant="danger" className="mt-3">
-            {error}
-          </Alert>
-        ) : null}
-        <h1 className="text-center">Prijava</h1>
+        <h1>Prijava</h1>
 
         <InputGroup className="mb-3">
           <InputGroup.Text id="inputGroup-sizing-default">

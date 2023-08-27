@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { GlobalErrorContext } from "../contexts/GlobarErrorContext";
 import { Container } from "react-bootstrap";
 import { UserContext } from "../contexts/UserContext";
 import { collection, getDocs, query, where } from "firebase/firestore";
@@ -11,13 +12,9 @@ const Home = () => {
   const navigate = useNavigate();
   const [books, setBooks] = useState([]);
   const user = useContext(UserContext);
+  const { setGlobalError } = useContext(GlobalErrorContext);
 
   useEffect(() => {
-    if (!user?.uid) {
-      navigate("/login");
-      return;
-    }
-
     (async () => {
       try {
         const booksRef = collection(db, "book");
@@ -30,10 +27,10 @@ const Home = () => {
         );
         setBooks(tempBooks);
       } catch (error) {
-        console.log(error);
+        setGlobalError(error.message);
       }
     })();
-  }, [user, navigate]);
+  }, [user, navigate, setGlobalError]); //setGlobalError zbog VSCode
 
   return (
     <Container>

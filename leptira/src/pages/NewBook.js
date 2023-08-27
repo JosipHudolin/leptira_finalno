@@ -55,10 +55,10 @@ const NewBook = () => {
 
   useEffect(() => {
     if (!user) {
-      navigate("/login")
+      navigate("/login");
       return;
     }
-  }, [user]);
+  }, [user, navigate]); // navigate zbog VSCode
 
   useEffect(() => {
     (async () => {
@@ -164,12 +164,13 @@ const NewBook = () => {
 
   return (
     <Container>
-      {
-        user ?
+      {user ? (
         <>
           <h1 className="mt-5 mb-3">NOVA LEPTIRA</h1>
           <Form onSubmit={handleSubmit}>
-            <Form.Label id="inputGroup-sizing-default">Odaberi razred</Form.Label>
+            <Form.Label id="inputGroup-sizing-default">
+              Odaberi razred
+            </Form.Label>
             <Form.Select
               className="mb-3"
               aria-label="Default select example"
@@ -226,7 +227,9 @@ const NewBook = () => {
               />
             </InputGroup>
 
-            <Form.Label id="inputGroup-sizing-default">Bilješke o piscu</Form.Label>
+            <Form.Label id="inputGroup-sizing-default">
+              Bilješke o piscu
+            </Form.Label>
             <InputGroup className="mb-3">
               <Form.Control
                 as="textarea"
@@ -347,7 +350,9 @@ const NewBook = () => {
               />
             </InputGroup>
 
-            <Form.Label id="inputGroup-sizing-default">Kratak sadržaj</Form.Label>
+            <Form.Label id="inputGroup-sizing-default">
+              Kratak sadržaj
+            </Form.Label>
             <InputGroup className="mb-3">
               <Form.Control
                 as="textarea"
@@ -388,8 +393,7 @@ const NewBook = () => {
             </Button>
           </Form>
         </>
-        : null
-      }
+      ) : null}
     </Container>
   );
 };

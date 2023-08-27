@@ -20,7 +20,7 @@ export const LeftContainer = styled.div`
   display: flex;
   align-items: center;
   padding-left: 5%;
-  background-color: #bfeaf5;
+  background-color: none;
   border-bottom-left-radius: 12px;
 `;
 
@@ -29,7 +29,7 @@ export const RightContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   padding-right: 50px;
-  background-color: #bfeaf5;
+  background-color: none;
   border-bottom-right-radius: 12px;
 `;
 

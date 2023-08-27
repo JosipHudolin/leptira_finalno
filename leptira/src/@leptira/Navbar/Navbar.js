@@ -73,12 +73,14 @@ const Navbar = () => {
         </LeftContainer>
         <RightContainer>
           <NavbarLinkContainer style={{ marginTop: "16px" }}>
-            {user ? <NavbarLink to="/profile">Bok, {name}</NavbarLink> : null}
             {user ? (
-              <NavbarLink onClick={handleLogOut}>Odjavi se!</NavbarLink>
+              <NavbarLink to="/profile">Pozdrav, {name}!</NavbarLink>
+            ) : null}
+            {user ? (
+              <NavbarLink onClick={handleLogOut}>Odjavi se</NavbarLink>
             ) : null}
           </NavbarLinkContainer>
-          <Logo src={LogoImg}></Logo>
+          <Logo whileHover={{ scale: 1.2 }} src={LogoImg}></Logo>
         </RightContainer>
       </NavbarInnerContainer>
       {extendNavbar && (

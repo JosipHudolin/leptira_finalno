@@ -28,8 +28,6 @@ const Profile = () => {
 
   const [editable, setEditable] = useState(false);
 
-  const [error, setError] = useState("");
-
   const auth = getAuth();
 
   useEffect(() => {
@@ -47,14 +45,7 @@ const Profile = () => {
       setGrade(userData.grade);
       setEmail(auth.currentUser.email);
     })();
-  }, [user, auth.currentUser.email, navigate]);
-
-  useEffect(() => {
-    if (!error) return;
-    setTimeout(() => {
-      setError("");
-    }, 10 * 1000);
-  }, [error]);
+  }, [user, auth.currentUser.email, navigate]); //auth i navigate zbog VSCode
 
   const handleClick = async (e) => {
     if (editable) {
@@ -71,7 +62,6 @@ const Profile = () => {
         setGlobalError(error.message);
       }
     }
-
     setEditable(!editable);
   };
 

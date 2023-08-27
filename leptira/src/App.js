@@ -9,10 +9,11 @@ import Register from "./pages/Register";
 import UserProvider from "./contexts/UserContext";
 import ErrorProvider from "./contexts/GlobarErrorContext";
 import GlobalError from "./components/GlobalError";
+import GlobalMessage from "./components/GlobalMessage";
 import Redirect from "./components/Redirect";
 import MyBook from "./pages/MyBook";
 import MessageProvider from "./contexts/GlobalMessageContext";
-import isPropValid from '@emotion/is-prop-valid'
+import isPropValid from "@emotion/is-prop-valid";
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
               <GlobalStyle />
               <Navbar />
               <GlobalError />
+              <GlobalMessage />
               <Redirect disabled>
                 <Routes>
                   <Route path="/" element={<Home />} />

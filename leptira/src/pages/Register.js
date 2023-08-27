@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { InputGroup, Form, Container, Alert } from "react-bootstrap";
+import React, { useState, useEffect, useContext } from "react";
+import { InputGroup, Form, Container } from "react-bootstrap";
+import { GlobalErrorContext } from "../contexts/GlobarErrorContext";
 import { Button, Link } from "../@leptira";
 import { useNavigate } from "react-router-dom";
 import { auth, db } from "../config";
@@ -10,6 +11,8 @@ import { getAllBooks } from "../server";
 const Register = () => {
   const [data, setData] = useState({});
 
+  const { setGlobalError } = useContext(GlobalErrorContext);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -18,8 +21,6 @@ const Register = () => {
       setData(data);
     })();
   }, []);
-
-  const [error, setError] = useState("");
 
   const [name, setName] = useState("");
 
@@ -37,7 +38,7 @@ const Register = () => {
     e.preventDefault();
 
     if (password1 !== password2) {
-      setError("Lozinke nisu jednake!");
+      setGlobalError("Lozinke nisu jednake!");
       return;
     }
 
@@ -57,25 +58,13 @@ const Register = () => {
 
       navigate("/");
     } catch (error) {
-      setError(error.message);
+      setGlobalError(error.message);
     }
   };
-
-  useEffect(() => {
-    if (!error) return;
-    setTimeout(() => {
-      setError("");
-    }, 10 * 1000);
-  }, [error]);
 
   return (
     <Container>
       <Form onSubmit={handleSubmit}>
-        {error ? (
-          <Alert variant="danger" className="mt-3">
-            {error}
-          </Alert>
-        ) : null}
         <h1 className="text-center">Registracija</h1>
 
         <InputGroup className="mb-3">

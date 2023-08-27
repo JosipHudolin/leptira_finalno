@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Alert, Container } from "react-bootstrap";
-import { GlobalMessageContext } from "../contexts/GlobarMessageContext";
+import { GlobalMessageContext } from "../contexts/GlobalMessageContext";
 
 const GlobalMessage = () => {
   const { globalMessage } = useContext(GlobalMessageContext);

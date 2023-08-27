@@ -6,7 +6,7 @@ export const StyledButton = styled.button`
   border: 1px solid #025e73;
   border-radius: 5px;
   padding: 10px 20px;
-  margin: ${(props) => props.$margin};
+  margin: 5px;
   padding: ${(props) => props.$padding};
   transition: 0.3s;
 

@@ -131,8 +131,7 @@ const MyBook = () => {
 
   return (
     <Container>
-      {
-        user ?
+      {user ? (
         <>
           <h1 className="mt-5 mb-3">{bookName}</h1>
           <Form>
@@ -284,7 +283,9 @@ const MyBook = () => {
                 />
               </InputGroup>
 
-              <Form.Label id="inputGroup-sizing-default">Kratak sadržaj</Form.Label>
+              <Form.Label id="inputGroup-sizing-default">
+                Kratak sadržaj
+              </Form.Label>
               <InputGroup className="mb-3">
                 <Form.Control
                   as="textarea"
@@ -321,15 +322,12 @@ const MyBook = () => {
               </InputGroup>
             </div>
 
-            <Button margin="5px" onClick={handleSave}>
-              Spremi izmjene
-            </Button>
+            <Button onClick={handleSave}>Spremi izmjene</Button>
 
             <Button onClick={handlePDF}>Izvezi u PDF</Button>
           </Form>
         </>
-        : null
-      }
+      ) : null}
     </Container>
   );
 };
